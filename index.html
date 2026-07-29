@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 Tiny Thinkers — Math For Kids</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    
+    <button class="music-toggle" id="musicToggle" title="Toggle Music">
+        <span class="music-icon-on">🎵</span>
+        <span class="music-icon-off hidden">🔇</span>
+    </button>
+
+    <div class="app-container" id="appContainer">
+
+        
+        <div class="screen home-screen active" id="homeScreen">
+
+            
+            <div class="logo-area">
+                <h1 class="app-title">Tiny Thinkers</h1>
+                <p class="app-subtitle">A Magical Math Adventure! 🦄</p>
+            </div>
+
+            
+            <div class="card candy-card operation-select-card fade-card visible" id="operationCard">
+                <div class="card-header-decoration">
+                    <span>🍬</span><span>🍭</span><span>🧁</span><span>🍭</span><span>🍬</span>
+                </div>
+                <h2 class="card-heading">Pick Your Magic! ✨</h2>
+                <div class="operations-grid" id="operationsGrid">
+                    <button class="operation-btn op-addition" data-op="addition" data-emoji="➕" data-label="Addition">
+                        <span class="op-icon-wrap">
+                            <span class="op-emoji">➕</span>
+                            <span class="op-character">🐰</span>
+                        </span>
+                        <span class="op-label">Adding</span>
+                    </button>
+                    <button class="operation-btn op-subtraction" data-op="subtraction" data-emoji="➖" data-label="Subtraction">
+                        <span class="op-icon-wrap">
+                            <span class="op-emoji">➖</span>
+                            <span class="op-character">🐻</span>
+                        </span>
+                        <span class="op-label">Subtracting</span>
+                    </button>
+                    <button class="operation-btn op-multiplication" data-op="multiplication" data-emoji="✖️" data-label="Multiplication">
+                        <span class="op-icon-wrap">
+                            <span class="op-emoji">✖️</span>
+                            <span class="op-character">🐱</span>
+                        </span>
+                        <span class="op-label">Multiplying</span>
+                    </button>
+                    <button class="operation-btn op-division" data-op="division" data-emoji="➗" data-label="Division">
+                        <span class="op-icon-wrap">
+                            <span class="op-emoji">➗</span>
+                            <span class="op-character">🐶</span>
+                        </span>
+                        <span class="op-label">Dividing</span>
+                    </button>
+                    <button class="operation-btn op-random" data-op="random" data-emoji="🎲" data-label="Random">
+                        <span class="op-icon-wrap">
+                            <span class="op-emoji">🎲</span>
+                            <span class="op-character">🦄</span>
+                        </span>
+                        <span class="op-label">Surprise!</span>
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="card candy-card level-select-card fade-card hidden" id="levelCard">
+                <div class="card-header-decoration">
+                    <span>🌟</span><span>🎯</span><span>🌟</span>
+                </div>
+                <h2 class="card-heading">Choose Your Level</h2>
+                <div class="level-grid" id="levelGrid">
+                    <button class="level-btn" data-level="easy">Easy<br><span>1-10</span></button>
+                    <button class="level-btn" data-level="medium">Medium<br><span>1-20</span></button>
+                    <button class="level-btn" data-level="hard">Hard<br><span>1-30</span></button>
+                </div>
+            </div>
+
+            
+            <button class="start-btn candy-btn hidden" id="startBtn" type="button">
+                <span class="btn-sparkle-left">✨</span>
+                <span class="btn-text">Next</span>
+                <span class="btn-sparkle-right">✨</span>
+            </button>
+        </div>
+
+        
+        <div class="screen game-screen" id="gameScreen">
+
+            
+            <div class="stats-bar candy-card">
+                <div class="stat-item stat-score">
+                    <span class="stat-icon">⭐</span>
+                    <span class="stat-label">Score</span>
+                    <span class="stat-value" id="scoreDisplay">0</span>
+                </div>
+                <div class="stat-item stat-streak">
+                    <span class="stat-icon">🔥</span>
+                    <span class="stat-label">Streak</span>
+                    <span class="stat-value" id="streakDisplay">x0</span>
+                </div>
+                <div class="stat-item stat-lives">
+                    <span class="stat-icon lives-display" id="livesDisplay">❤️❤️❤️</span>
+                </div>
+                <div class="stat-item stat-iq">
+                    <span class="stat-icon">🧠</span>
+                    <div>
+                        <span class="stat-label">IQ</span>
+                        <span class="stat-value" id="iqDisplay">100</span>
+                    </div>
+                </div>
+                <div class="stat-item stat-timer">
+                    <span class="stat-icon">⏱</span>
+                    <div>
+                        <span class="stat-label">Time</span>
+                        <span class="stat-value" id="timerDisplay">0s</span>
+                    </div>
+                </div>
+                <div class="stat-item stat-op">
+                    <span class="stat-icon" id="currentOpEmoji">➕</span>
+                    <span class="stat-label" id="currentOpLabel">Adding</span>
+                </div>
+            </div>
+
+            
+            <div class="card candy-card question-card" id="questionCard">
+                <div class="card-header-decoration">
+                    <span>🌟</span><span>💡</span><span>🌟</span>
+                </div>
+                <div class="question-visual" id="questionVisual">
+                    <span class="question-number" id="num1Display">?</span>
+                    <span class="question-operator" id="opDisplay">+</span>
+                    <span class="question-number" id="num2Display">?</span>
+                    <span class="question-equals">=</span>
+                    <input type="number" class="answer-input" id="answerInput" placeholder="?" min="0" max="100" autocomplete="off">
+                </div>
+                <p class="question-prompt" id="questionPrompt">Tap the magic wand to start! 🪄</p>
+                
+                <div class="reaction-buddy" id="reactionBuddy"></div>
+            </div>
+
+            
+            <div class="action-buttons">
+                <button class="action-btn generate-btn candy-btn-sm" id="generateBtn">
+                    <span>🪄</span> New Question
+                </button>
+                <button class="action-btn check-btn candy-btn-sm" id="checkBtn" disabled>
+                    <span>✅</span> Check
+                </button>
+                <button class="action-btn hint-btn candy-btn-sm" id="hintBtn" disabled>
+                    <span>💡</span> Hint
+                </button>
+            </div>
+
+            <div class="hint-overlay" id="hintOverlay"></div>
+
+            
+            <div class="card candy-card hint-card" id="hintCard" style="display: none;">
+                <h3 class="hint-title">💡 Magic Hint!</h3>
+                <div class="hint-content" id="hintContent"></div>
+                <button class="close-hint-btn candy-btn-sm" id="closeHintBtn">Got It! 👍</button>
+            </div>
+
+            
+            <button class="back-home-btn" id="backHomeBtn">
+                <span>🏠</span> Home
+            </button>
+        </div>
+
+        <div class="modal-overlay" id="answerModal" aria-hidden="true">
+            <div class="modal-card candy-card">
+                <div class="modal-icon" id="modalIcon">🥳</div>
+                <div class="modal-title" id="modalTitle">Great job!</div>
+                <div class="modal-equation" id="modalEquation">3 + 4 = 7</div>
+                <div class="modal-message" id="modalMessage">You got it right! Ready for the next one?</div>
+                <div class="modal-stats">
+                    <div class="modal-stat-item">
+                        <div class="modal-stat-value" id="modalScore">0</div>
+                        <div class="modal-stat-label">Score</div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="modal-stat-value" id="modalIQ">100</div>
+                        <div class="modal-stat-label">IQ</div>
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button class="modal-btn primary" id="modalNextBtn">Next</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
